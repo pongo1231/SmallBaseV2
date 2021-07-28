@@ -7,6 +7,7 @@
 #include "pointers.hpp"
 #include "renderer.hpp"
 #include "script_mgr.hpp"
+#include "crossmap.hpp"
 
 BOOL APIENTRY DllMain(HMODULE hmod, DWORD reason, PVOID)
 {
@@ -50,7 +51,17 @@ u8R"kek(                     ...
 				auto pointers_instance = std::make_unique<pointers>();
 				LOG_INFO("Pointers initialized.");
 
-				if (*g_pointers->m_game_state != eGameState::Playing)
+				std::ofstream native_dump_log("natives.txt");
+				native_dump_log << "Image Base: " << GetModuleHandle(NULL) << "\n";
+				for (auto& crossmap : g_crossmap)
+				{
+					auto handler = g_pointers->m_get_native_handler(g_pointers->m_native_registration_table, crossmap.second);
+
+					native_dump_log << std::hex << std::uppercase << "0x" << crossmap.first << " | 0x" << crossmap.second << " | 0x" << handler << "\n";
+				}
+
+				// Pfft as if I'm going to do this the proper way
+				/*if (*g_pointers->m_game_state != eGameState::Playing)
 				{
 					LOG_INFO("Waiting for the game to load.");
 					do
@@ -108,7 +119,7 @@ u8R"kek(                     ...
 				LOG_INFO("Renderer uninitialized.");
 
 				pointers_instance.reset();
-				LOG_INFO("Pointers uninitialized.");
+				LOG_INFO("Pointers uninitialized.");*/
 			}
 			catch (std::exception const &ex)
 			{

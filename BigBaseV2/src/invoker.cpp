@@ -34,15 +34,16 @@ namespace big
 		{
 			rage::scrNativeHandler handler = it->second;
 
-			__try
-			{
+			// SEH won't even work here
+			//__try
+			//{
 				handler(&m_call_context);
 				g_pointers->m_fix_vectors(&m_call_context);
-			}
-			__except (EXCEPTION_EXECUTE_HANDLER)
-			{
-				LOG_ERROR("Exception caught while trying to call 0x{:X} native.", hash);
-			}
+			//}
+			//__except (EXCEPTION_EXECUTE_HANDLER)
+			//{
+			//	LOG_ERROR("Exception caught while trying to call 0x{:X} native.", hash);
+			//}
 		}
 		else
 		{

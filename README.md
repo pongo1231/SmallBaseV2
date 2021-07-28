@@ -1,15 +1,11 @@
-# BigBaseV2
-A mod menu base for Grand Theft Auto V.
-Strictly for educational purposes.
+# Smaller than BigBaseV2
+I keep losing the source code of my hacky native entry point dumper built on BigBaseV2 so I'm just going to keep the repo here.
+Will work with 2374.
 
 ## Features
-* ImGui–based user interface
-* Unloading at runtime
-* Log console
-* Script fibers
-* Fiber pool
-* Access to YSC script globals
-* scrProgram–based native hook
+* A console
+* Edgy ascii art
+* Dumps entry points of natives to natives.txt
 
 ## Building
 To build BigBaseV2 you need:

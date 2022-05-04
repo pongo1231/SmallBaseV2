@@ -1,6 +1,6 @@
 # Smaller than BigBaseV2
 I keep losing the source code of my hacky native entry point dumper built on BigBaseV2 so I'm just going to keep the repo here.
-Will work with 2545.
+Will work with 2612.
 
 ## Features
 * A console
